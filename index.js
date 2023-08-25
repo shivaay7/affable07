@@ -5,14 +5,16 @@ const port = 5000
 const mongoDB = require("./db")
 const cors = require("cors")
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://affablefrontend.onrender.com'
+}));
 
 
-app.use((req,res,next)=>{
-  res.setHeader("Access-Control-Allow-Origin","http://localhost:3000")
-  res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept")
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://affablefrontend.onrender.com');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
-})
+});
 mongoDB();
 app.get('/', (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials","true");
